@@ -74,5 +74,7 @@ static const struct arg args[] = {
     { separator,        " | ",      NULL                                    },
     { ram_used,         "%2s",      NULL                                    },
     { separator,        " | ",      NULL                                    },
+    { uptime,           "%s",       NULL                                    },
+    { separator,        " | ",      NULL                                    },
     { datetime,         "%s ",      "%a %b %d %Y %H:%M:%S %Z"               },
 };
