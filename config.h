@@ -64,16 +64,15 @@ static const char unknown_str[] = "n/a";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-    /* function          format                  argument                                */
-    { battery_perc,      "^c#a3b9bf^bat %2s%% ", "BAT0"                                  },
-    { battery_state,     "[%s] ",                "BAT0"                                  },
-    { separator,         "/ ",                   NULL                                    },
-    { temp,              "temp %2s°C ",          "/sys/class/thermal/thermal_zone0/temp" },
-    { cpu_perc,          "^c#97a0a3^cpu %2s%% ", NULL                                    },
-    { separator,         "/ ",                   NULL                                    },
-    { ram_used,          "mem %2s ",             NULL                                    },
-    { uptime,            "^c#838e90^up %s ",     NULL                                    },
-    { separator,         "/ ",                   NULL                                    },
-    { datetime,          "%s ",                  "%b %d %Y, %H:%M:%S"                    },
-    { systemd_is_active, "%s ",                  "openvpn-client@otrs.service"           },
+    /* function          format              argument                                */
+    { battery_perc,      "bat %2s%% ",       "BAT0"                                  },
+    { battery_state,     "[%s] ",            "BAT0"                                  },
+    { temp,              "temp %2s°C",       "/sys/class/thermal/thermal_zone0/temp" },
+    { separator,         "^c#a3b9bf^ / ^d^", NULL                                    },
+    { cpu_perc,          "cpu %2s%% ",       NULL                                    },
+    { ram_used,          "mem %2s",          NULL                                    },
+    { separator,         "^c#a3b9bf^ / ^d^", NULL                                    },
+    { uptime,            "up %s ",           NULL                                    },
+    { datetime,          "%s ",              "%b %d %Y, %H:%M:%S"                    },
+    { systemd_is_active, "%s ",              "openvpn-client@otrs.service"           },
 };
