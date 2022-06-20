@@ -67,12 +67,11 @@ static const struct arg args[] = {
     /* function          format              argument                                */
     { battery_perc,      "bat %2s%% ",       "BAT0"                                  },
     { battery_state,     "[%s] ",            "BAT0"                                  },
-    { temp,              "temp %2s°C",       "/sys/class/thermal/thermal_zone0/temp" },
+    { temp,              "temp %2s°C",       "/sys/class/hwmon/hwmon5/temp1_input"   },
     { separator,         "^c#a3b9bf^ / ^d^", NULL                                    },
     { cpu_perc,          "cpu %2s%% ",       NULL                                    },
     { ram_used,          "mem %2s",          NULL                                    },
     { separator,         "^c#a3b9bf^ / ^d^", NULL                                    },
     { uptime,            "up %s ",           NULL                                    },
     { datetime,          "%s ",              "%b %d %Y, %H:%M:%S"                    },
-    { systemd_is_active, "%s ",              "openvpn-client@otrs.service"           },
 };
