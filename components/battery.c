@@ -3,11 +3,15 @@
 #include <string.h>
 
 #include "../util.h"
+#include "../slstatus.h"
 
 #if defined(__linux__)
 	#include <limits.h>
 	#include <stdint.h>
 	#include <unistd.h>
+	#include <stdbool.h>
+
+	static bool notified = false;
 
 	static const char *
 	pick(const char *bat, const char *f1, const char *f2, char *path,
@@ -31,6 +35,7 @@
 	{
 		int perc;
 		char path[PATH_MAX];
+		char battery[256];
 
 		if (esnprintf(path, sizeof(path),
 		              "/sys/class/power_supply/%s/capacity", bat) < 0) {
@@ -40,7 +45,23 @@
 			return NULL;
 		}
 
-		return bprintf("%d", perc);
+		if (perc <= 10 && perc > 5) {
+			notified = false;
+			sprintf(battery, "%s%d%s", "^c#d3d626^", perc, "^c#a3b9bf^");
+		}
+		else if (perc <= 5) {
+			sprintf(battery, "%s%d%s", "^c#fc2d5a^", perc, "^c#a3b9bf^");
+			if (!notified && strcmp(battery_state(bat), "-") == 0) {
+				run_command("herbe 'Battery low!' 'Battery is at 5% or less.'");
+				notified = true;
+			}
+		}
+		else {
+			notified = false;
+			sprintf(battery, "%d", perc);
+		}
+
+		return bprintf("%s", battery);
 	}
 
 	const char *
