@@ -74,4 +74,5 @@ static const struct arg args[] = {
     { separator,         "^c#a3b9bf^ / ^d^", NULL                                    },
     { uptime,            "up %s ",           NULL                                    },
     { datetime,          "%s ",              "%b %d %Y, %H:%M:%S"                    },
+    { run_command,       "%s ",              "cat ~/.emotion"                        },
 };
